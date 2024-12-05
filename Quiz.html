@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #ffefe0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background: #ff7f7f;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #ff4c4c;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        .gif-container img {
+            max-width: 70%;
+            border-radius: 10px;
+        }
+        .top-left-gif, .bottom-right-gif {
+            position: fixed;
+            width: 50px; /* Adjust as needed */
+            height: auto;
+        }
+        .top-left-gif {
+            top: 30px;
+            left: 130px;
+        }
+        .bottom-right-gif {
+            bottom: 250px;
+            right: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Upper left corner GIF -->
+    <div class="top-left-gif">
+        <img src="https://i.pinimg.com/originals/63/c8/cc/63c8cc9e69d5f96a5ba105aaaaf8c8e2.gif" alt="Top Left GIF">
+    </div>
+
+    <!-- Bottom right corner GIF -->
+    <div class="bottom-right-gif">
+        <img src="https://www.icegif.com/wp-content/uploads/icegif-3796.gif" alt="Bottom Right GIF">
+    </div>
+
+    <div class="container" id="quiz-container">
+        <div class="gif-container" id="gif-container">
+            <img src="https://media.tenor.com/CedXUNwq3fcAAAAj/tkthao219-bubududu.gif" alt="Surprise GIF">
+        </div>
+        <div class="question" id="question">Malem Bubub Ku Bias Sayang ❤️ </div>
+        <button class="button" onclick="nextQuestion(1)">Lanjut</button>    
+    </div>
+
+    <script>
+        const questions = [
+            "Malem Bubub Ku Bias Sayang ❤️",
+            "Lagi Badmood Yaa ?",
+            "Kenapaaa cantikk ?, cini ngobroll yukk",
+            "Maaf yaa kalo aku sering bikin kamu kesel sama bikin badmood",
+            "Langgeng terusss yaa sama akuu, aku bener-bener sayang sama kamu ❤️",
+            "Aku bakal berusaha terus buat bikin kamu ceneng teruss, LOVE YOUUU BUBUB 😘;"
+        ];
+
+        const gifs = [
+            "https://media.tenor.com/CedXUNwq3fcAAAAj/tkthao219-bubududu.gif",
+            "https://media.tenor.com/Obm7FIMrbVcAAAAj/tonton-chick.gif",
+            "https://media.tenor.com/NSYrfjICse0AAAAM/come-here-cute.gif",
+            "https://gifdb.com/images/high/milk-and-mocha-i-am-sorry-4t6uype5kdct4fxo.gif",
+            "https://media.tenor.com/H1gpSxB6qvEAAAAM/please-please-please.gif",
+            "https://i.pinimg.com/originals/ed/69/31/ed6931bba91425579d67b6be8991a67e.gif"
+        ];
+
+        let currentQuestion = 0;
+
+        function nextQuestion(choice) {
+            const container = document.getElementById('quiz-container');
+            const gifContainer = document.getElementById('gif-container');
+
+            if (choice === 1) {
+                // Logic for "Yes!" button
+                currentQuestion = (currentQuestion + 1) % questions.length;
+            } else if (choice === 2) {
+                // Logic for "Of course! ❤️" button
+                currentQuestion = (currentQuestion + 2) % questions.length;
+            }
+
+            if (currentQuestion < questions.length) {
+                // Update the question and GIF
+                document.getElementById('question').textContent = questions[currentQuestion];
+                gifContainer.innerHTML = `<img src="${gifs[currentQuestion]}" alt="Question GIF">`;
+            } else {
+                // End of the quiz
+                container.innerHTML = `
+                    <div class="question">You're amazing! Thanks for playing! 🎉</div>
+                    <button class="button" onclick="restartQuiz()">Play Again?</button>
+                `;
+            }
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = `
+                <div class="gif-container" id="gif-container">
+                    <img src="https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif" alt="Surprise GIF">
+                </div>
+                <div class="question" id="question">Are you ready for a surprise? 😊</div>
+                <button class="button" onclick="nextQuestion(1)">Yes!</button>
+                <button class="button" onclick="nextQuestion(2)">Of course! ❤️</button>
+            `;
+        }
+    </script>
+</body>
+</html>
